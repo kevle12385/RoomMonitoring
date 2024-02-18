@@ -83,7 +83,6 @@ export default function EditScreenContent({ onClose, URL, fetchRoomsData, rooms,
           <form onSubmit={handleSubmit}>
             <input type="text" value={roomName} onChange={handleInputChange} placeholder="New Name" />
             <button type="submit">Submit</button>
-            <div>{URL}</div>
           </form>
           <button className="Closebutton" onClick={onClose}>Close</button>
         </div>

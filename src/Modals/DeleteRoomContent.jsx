@@ -6,8 +6,6 @@ import React, { useState } from 'react';
 export default function EditScreenContent({ onClose, URL , rooms, setRooms }) {
     const [selectedRoomIds, setSelectedRoomIds] = useState([]);
 
-    const [roomName, setRoomName] = useState('');
-
 const handleRoomSelectionChange = (selectedId, isChecked) => {
     setSelectedRoomIds(prevSelectedIds => isChecked 
         ? [...prevSelectedIds, selectedId ] 

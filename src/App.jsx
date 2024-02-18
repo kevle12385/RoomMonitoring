@@ -8,6 +8,7 @@ import axios from 'axios';
 import './index.css';
 import Rooms from './Pages/Rooms';
 import RoomTemplate from './Pages/RoomTemplate';
+import TempSimulation from './Pages/TempSimulation';
 
 
 
@@ -47,8 +48,9 @@ function App() {
           <li>
             <Link to="/rooms">Rooms</Link>     
           </li>
+         
           <li>
-            <Link to="/rooms/name">RoomTemplate</Link>
+            <Link to="/tempSimulation">Temp Simulator</Link>
           </li>
         </ul>
       </nav>
@@ -56,9 +58,8 @@ function App() {
         
       <Routes>
       <Route path="/rooms" element={ <Rooms URL={URL} rooms={rooms} setRooms={setRooms} />}>
-          
       </Route>
-      
+        <Route path="/tempSimulation" element={<TempSimulation/>} />
         <Route path="/" element={<Home />} /> 
         <Route path="/alerts" element={<Alerts URL={URL} rooms={rooms} setRooms={setRooms} alerts={alerts} setAlerts={setAlerts} />} />
         {/* <Route path="/rooms" element={ <Rooms URL={URL} rooms={rooms} setRooms={setRooms} />}>
