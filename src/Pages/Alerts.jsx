@@ -35,7 +35,7 @@ function Alerts({alerts, setAlerts, URL, rooms, setRooms }) {
 
       </div>
   
-    <SetAlertModal URL={URL} rooms={rooms} setRooms={setRooms} />
+    <SetAlertModal URL={URL} rooms={rooms} fetchAlertData={fetchAlertData} setRooms={setRooms} />
     <UpdateAlert fetchAlertData={fetchAlertData} URL={URL} alerts={alerts} setAlerts={setAlerts} />
     </>
   );

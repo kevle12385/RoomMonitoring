@@ -6,6 +6,8 @@ function UpdateAlertContent({onClose, URL, alerts, fetchAlertData, setAlerts}) {
     const [selectedRoomId, setSelectedRoomId] = useState(null);
     const [isEditView, setIsEditView] = useState(true); // Track if the modal should show the edit view
     const [selectedRoomName, setSelectedRoomName] = useState("");
+    const [alertCreationSuccess, setAlertCreationSuccess] = useState(false);
+
     const [Upper, setUpper] = useState("");
     const [Lower, setLower] = useState("");
   
@@ -33,6 +35,8 @@ function UpdateAlertContent({onClose, URL, alerts, fetchAlertData, setAlerts}) {
     useEffect(() => {
         fetchAlertData();
     }, []); 
+
+    
 
     useEffect(() => {
         console.log(alerts); // This will log alerts whenever they change

@@ -3,7 +3,7 @@ import '../Modals/Modal.css'
 import axios from 'axios';
 
 
-function SetAlertContent({onClose , rooms,URL, setRooms}) {
+function SetAlertContent({onClose ,fetchAlertData, rooms,URL, setRooms}) {
     const [isEditView, setIsEditView] = useState(true); // Track if the modal should show the edit view
     const [selectedRoomId, setSelectedRoomId] = useState(null);
 
@@ -11,8 +11,11 @@ function SetAlertContent({onClose , rooms,URL, setRooms}) {
     const [Upper, setUpper] = useState("");
     const [Lower, setLower] = useState("");
 
+    
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
+        
         if (Upper.length === 0 || Lower.length === 0) {
           alert('Please enter a value.');
           return;
@@ -22,12 +25,13 @@ function SetAlertContent({onClose , rooms,URL, setRooms}) {
         const response = await axios.post(`${URL}/api/alerts/set/room/${selectedRoomId}`, {
         upperLimit: Upper,
         lowerLimit: Lower,
-
         });
-        console.log("Room name successfully updated.", response.data); // It's good to log the response for debugging
-       
+        console.log("Alert name successfully updated.", response.data); // It's good to log the response for debugging
+        setUpper('');
+        setLower('');
+        fetchAlertData();
         onClose(); 
-        fetchRoomsData();
+        
         } catch (error) {
           alert('Alert already created');
 
@@ -35,9 +39,6 @@ function SetAlertContent({onClose , rooms,URL, setRooms}) {
 
         }
     }
-
-
-
 
     const handleInputChange = (e) => {
         setUpper(e.target.value); // Updates the state based on input value
@@ -71,21 +72,7 @@ function SetAlertContent({onClose , rooms,URL, setRooms}) {
 
 
 
-    const fetchRoomsData = () => {
-        axios.get(`${URL}/api/room`)
-          .then(response => {
-            console.log(response.data);
-            setRooms(response.data);
-          })
-          .catch(error => {
-            console.error('There was a problem with the Axios operation:', error);
-          });
-      };
-    
-      useEffect(() => {
-        fetchRoomsData();
-      }, [URL]); // Dependency array to re-fetch if URL changes
-
+   
 
     return (
 
