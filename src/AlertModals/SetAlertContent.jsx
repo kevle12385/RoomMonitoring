@@ -6,7 +6,7 @@ import axios from 'axios';
 function SetAlertContent({onClose , rooms,URL, setRooms}) {
     const [isEditView, setIsEditView] = useState(true); // Track if the modal should show the edit view
     const [selectedRoomId, setSelectedRoomId] = useState(null);
-    const [roomName, setRoomName] = useState('');
+
     const [selectedRoomName, setSelectedRoomName] = useState(""); // To store the selected room's current name
     const [Upper, setUpper] = useState("");
     const [Lower, setLower] = useState("");
@@ -25,9 +25,12 @@ function SetAlertContent({onClose , rooms,URL, setRooms}) {
 
         });
         console.log("Room name successfully updated.", response.data); // It's good to log the response for debugging
-        fetchRoomsData();
+       
         onClose(); 
-        }catch (error) {
+        fetchRoomsData();
+        } catch (error) {
+          alert('Alert already created');
+
             console.error('Error Creating Alert:', error);
 
         }

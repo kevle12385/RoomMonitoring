@@ -1,7 +1,7 @@
 import React, { useEffect}  from 'react';
 import axios from 'axios';
 import SetAlertModal from '../AlertModals/SetAlertModal.jsx';
-
+import UpdateAlert from '../AlertModals/UpdateAlert.jsx';
 
 
 function Alerts({alerts, setAlerts, URL, rooms, setRooms }) {
@@ -34,10 +34,9 @@ function Alerts({alerts, setAlerts, URL, rooms, setRooms }) {
 )) : <p>No Alerts...</p>}
 
       </div>
-    <h1>Set Alerts</h1>
-    <h1>Delete Alerts</h1>
-    <h1> Update Alerts</h1>
+  
     <SetAlertModal URL={URL} rooms={rooms} setRooms={setRooms} />
+    <UpdateAlert fetchAlertData={fetchAlertData} URL={URL} alerts={alerts} setAlerts={setAlerts} />
     </>
   );
 }

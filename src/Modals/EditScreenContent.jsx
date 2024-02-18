@@ -12,8 +12,9 @@ export default function EditScreenContent({ onClose, URL, fetchRoomsData, rooms,
   
   const handleRoomSelectionChange = (e) => {
     setSelectedRoomId(e.target.value);
-    setSelectedRoomId(roomId);
-    const room = rooms.find(room => room.id.toString() === roomId); // Ensure matching types (string/number)
+    
+
+    const room = rooms.find(room => room.id.toString() === selectedRoomId); // Ensure matching types (string/number)
     if (room) {
       setSelectedRoomName(room.name);
     }
