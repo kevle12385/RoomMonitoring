@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { VictoryLine, VictoryChart, VictoryAxis, VictoryTheme, VictoryTooltip, VictoryVoronoiContainer  } from 'victory';
+import SendAlert from '../AlertModals/SendAlert';
 
 
-const TempSimulation = ({ roomId, URL }) => {
+const TempSimulation = ({ roomId, URL, roomName }) => {
     const [currentTemp, setCurrentTemp] = useState((20 + 25) / 2);
     const [isActive, setIsActive] = useState(false);
     const [temperatureReadings, setTemperatureReadings] = useState([]);
@@ -74,16 +75,7 @@ const TempSimulation = ({ roomId, URL }) => {
     const increaseTemperature = () => Math.min(30, currentTemp + Math.random() * 5 + 1);
     const decreaseTemperature = () => Math.max(10, currentTemp - (Math.random() * 5 + 1));
     
-    // const sendDataToServer = (temperature) => {
-    //     axios.post( `${URL}/api/temperature`, {temperature :temperature, room: roomId })
-    //         .then(response => {
-    //             console.log('Temperature data sent successfully:', response.data);
-    //         })
-    //         .catch(error => {
-    //             console.error('Error sending temperature data:', error);
-    //         });
-    // };
-    
+ 
     const handleUpdateTemperature = (action) => {
         let newTemp = currentTemp;
         switch (action) {
@@ -112,7 +104,8 @@ const TempSimulation = ({ roomId, URL }) => {
             <button onClick={() => handleUpdateTemperature('normal')}>Normal Temp</button>
             <button onClick={() => handleUpdateTemperature('increase')}>Increase Temp</button>
             <button onClick={() => handleUpdateTemperature('decrease')}>Decrease Temp</button>
-            <button onClick={clearData}>Clear Data </button>
+            <button onClick={clearData} >Clear Data </button>
+            <SendAlert roomName= {roomName} URL={URL} roomId={roomId}/>
            
            
             <div className="chart-container">
@@ -175,11 +168,6 @@ const TempSimulation = ({ roomId, URL }) => {
                 )}
             </div>
 
-
-
-
-
-          
         </div>
     );
 };

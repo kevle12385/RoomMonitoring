@@ -23,11 +23,14 @@ function RoomTemplate({ URL }) {
   useEffect(() => {
     fetchRoomsData();
   }, [URL, ]); // Added id to dependency array to refetch if id changes
+  
+  let roomName = room ? room.name : '';
+
 
   return (
     <>
       <h1>{room ? room.name : 'Loading room...'}</h1>
-      {room && <TempSimulation roomId={room.id} URL={URL}/>}
+      {room && <TempSimulation roomName = {roomName} roomId={room.id} URL={URL}/>}
     </>
   );
 }

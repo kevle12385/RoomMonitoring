@@ -40,6 +40,8 @@ function SetAlertContent({onClose ,fetchAlertData, rooms,URL, setRooms}) {
         }
     }
 
+  
+
     const handleInputChange = (e) => {
         setUpper(e.target.value); // Updates the state based on input value
       };
