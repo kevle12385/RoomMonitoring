@@ -110,60 +110,62 @@ const TempSimulation = ({ roomId, URL, roomName }) => {
            
             <div className="chart-container">
             {temperatureReadings.length > 0 && (
-                    <VictoryChart
-                        theme={VictoryTheme.material}
-                        domainPadding={20}
-                        containerComponent={<VictoryVoronoiContainer/>} // Wrap with VictoryVoronoiContainer
-
-                    >
-                        <VictoryAxis
-                            tickFormat={(t) => new Date(t).toLocaleTimeString()}
-                            style={{ tickLabels: { angle: -45, fontSize: 8, padding: 15 }, grid: { stroke: "none" } }}
-                        />
-                        <VictoryAxis
-                            dependentAxis
-                            tickFormat={(x) => `${x.toFixed(2)}°C`}
-                            style={{ grid: { stroke: "none" }}}
-                        />
-                        <VictoryLine
-                            data={temperatureReadings.map(reading => ({
-                                x: reading.timestamp,
-                                y: reading.temperature,
-                            }))}
-                            labels={({ datum }) => `${datum.y.toFixed(2)}°C at ${new Date(datum.x).toLocaleTimeString()}`} // Customize tooltip text
-                            labelComponent={
-                                <VictoryTooltip
-                                    flyoutStyle={{ stroke: "tomato", strokeWidth: 2, fill: "white" }}
-                                    style={{ fontSize: 10 }}
-                                />
-                            }
-                            style={{
-                                data: { stroke: "#c43a31" },
-                            }}
-                            
-                        />
-                       {
-  alerts && alerts.upperlimit && (
-    <VictoryLine
-      data={[
-        { x: temperatureReadings[0]?.timestamp, y: alerts.upperlimit },
-        { x: temperatureReadings[temperatureReadings.length - 1]?.timestamp, y: alerts.upperlimit }
-      ]}
-      style={{ data: { stroke: "blue", strokeWidth: 2 } }}
-    />
-  )
-}
-{
-  alerts && alerts.lowerLimit && (
-    <VictoryLine
-      data={[
-        { x: temperatureReadings[0]?.timestamp, y: alerts.lowerLimit },
-        { x: temperatureReadings[temperatureReadings.length - 1]?.timestamp, y: alerts.lowerLimit }
-      ]}
-      style={{ data: { stroke: "blue", strokeWidth: 2 } }}
-    />
-  )
-}
+              <VictoryChart
+               theme={VictoryTheme.material}
+               domainPadding={20}
+               containerComponent={<VictoryVoronoiContainer/>} // Wrap with VictoryVoronoiContainer
+              >
+                <VictoryAxis
+                 tickFormat={(t) => new Date(t).toLocaleTimeString()}
+                 style={{ tickLabels: { angle: -45, fontSize: 8, padding: 15 }, grid: { stroke: "none" } }}
+                />
+                <VictoryAxis
+                 dependentAxis
+                 tickFormat={(x) => `${x.toFixed(2)}°C`}
+                 style={{ grid: { stroke: "none" }}}
+                />
+                <VictoryLine
+                 data={temperatureReadings.map(reading => ({
+                 x: reading.timestamp,
+                 y: reading.temperature,}))}
+                labels={({ datum }) => `${datum.y.toFixed(2)}°C at ${new Date(datum.x).toLocaleTimeString()}`} // Customize tooltip text
+                labelComponent={
+                <VictoryTooltip
+                 flyoutStyle={{ stroke: "tomato", strokeWidth: 2, fill: "white" }}
+                  style={{ fontSize: 10 }}
+                />}
+                style={{data: { stroke: "#c43a31" }, }}
+                />
+                {
+                  alerts && alerts.upperlimit && (
+                  <VictoryLine
+                   data={[
+                   { x: temperatureReadings[0]?.timestamp, y: alerts.upperlimit },
+                   { x: temperatureReadings[temperatureReadings.length - 1]?.timestamp, y: alerts.upperlimit }
+                   ]}
+                   labels={({ datum }) => `Upper Limit: ${datum.y.toFixed(2)}°C`} // Customize tooltip text
+                   labelComponent={
+                   <VictoryTooltip
+                   flyoutStyle={{ stroke: "tomato", strokeWidth: 2, fill: "white" }}
+                   style={{ fontSize: 10 }}
+                   />}
+                   style={{ data: { stroke: "blue", strokeWidth: 2 } }}
+                   />)}
+                {
+                  alerts && alerts.lowerLimit && (
+                 <VictoryLine
+                  data={[
+                    { x: temperatureReadings[0]?.timestamp, y: alerts.lowerLimit },
+                    { x: temperatureReadings[temperatureReadings.length - 1]?.timestamp, y: alerts.lowerLimit }
+                  ]}
+                  labels={({ datum }) => `Lower Limit: ${datum.y.toFixed(2)}°C  }`} // Customize tooltip text
+                  labelComponent={
+                  <VictoryTooltip
+                  flyoutStyle={{ stroke: "tomato", strokeWidth: 2, fill: "white" }}
+                  style={{ fontSize: 10 }}
+                  />}
+                  style={{ data: { stroke: "blue", strokeWidth: 2 } }} />)
+                }
                     </VictoryChart>
                 )}
             </div>
