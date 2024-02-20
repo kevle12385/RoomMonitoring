@@ -149,33 +149,28 @@ const TempSimulation = ({ roomId, URL }) => {
                             }}
                             
                         />
-                       <VictoryLine
-                        data={[{ x: temperatureReadings[0].timestamp, y: alerts.upperlimit }, // Start of your x-axis range
-                               { x: temperatureReadings[temperatureReadings.length - 1].timestamp, y: alerts.upperlimit } // End of your x-axis range
-                              ]}
-                              labels={({ datum }) => `Upper Limit: ${datum.y.toFixed(2)}°C `} // Customize tooltip text
-                              labelComponent={
-                                  <VictoryTooltip
-                                      flyoutStyle={{ stroke: "tomato", strokeWidth: 2, fill: "white" }}
-                                      style={{ fontSize: 10 }}
-                                  />
-                              }
-                        style={{ data: { stroke: "blue", strokeWidth: 2 } }}
-                      />
-                       <VictoryLine
-                            data={[
-                            { x: temperatureReadings[0].timestamp, y: alerts.lowerLimit }, // Start of your x-axis range
-                            { x: temperatureReadings[temperatureReadings.length - 1].timestamp, y: alerts.lowerLimit } // End of your x-axis range
-                            ]}
-                            labels={({ datum }) => `Lower Limit: ${datum.y.toFixed(2)}°C `} // Customize tooltip text
-                            labelComponent={
-                                <VictoryTooltip
-                                    flyoutStyle={{ stroke: "tomato", strokeWidth: 2, fill: "white" }}
-                                    style={{ fontSize: 10 }}
-                                />
-                            }
-                            style={{ data: { stroke: "blue", strokeWidth: 2 } }}
-                        />
+                       {
+  alerts && alerts.upperlimit && (
+    <VictoryLine
+      data={[
+        { x: temperatureReadings[0]?.timestamp, y: alerts.upperlimit },
+        { x: temperatureReadings[temperatureReadings.length - 1]?.timestamp, y: alerts.upperlimit }
+      ]}
+      style={{ data: { stroke: "blue", strokeWidth: 2 } }}
+    />
+  )
+}
+{
+  alerts && alerts.lowerLimit && (
+    <VictoryLine
+      data={[
+        { x: temperatureReadings[0]?.timestamp, y: alerts.lowerLimit },
+        { x: temperatureReadings[temperatureReadings.length - 1]?.timestamp, y: alerts.lowerLimit }
+      ]}
+      style={{ data: { stroke: "blue", strokeWidth: 2 } }}
+    />
+  )
+}
                     </VictoryChart>
                 )}
             </div>
