@@ -8,14 +8,16 @@ const TempSimulation = ({ roomId, URL }) => {
     const [isActive, setIsActive] = useState(false);
     const [temperatureReadings, setTemperatureReadings] = useState([]);
     const [data, setData] = useState([]);
-    const [alerts, setAlerts] = useState(null)
+    const [alerts, setAlerts] = useState([])
 
 
     
     const fetchAlertData = () => {
-        axios.get(`${URL}/api/alerts`)
+        axios.get(`${URL}/api/alerts/${roomId}`)
           .then(response => {
             console.log(response.data[0]);
+            console.log(roomId);
+
             setAlerts(response.data[0]);
           })
           .catch(error => {
