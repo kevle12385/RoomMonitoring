@@ -8,7 +8,6 @@ import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from 'victory';
 
 
 function Rooms({ URL, rooms, setRooms }) {
-  console.log("URL:", URL);
 
   const data = [
     {quarter: 1, earnings: 13000},

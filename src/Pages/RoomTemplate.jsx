@@ -12,8 +12,7 @@ function RoomTemplate({ URL }) {
       .then(response => {
         const roomData = response.data[0]; // Access the first object in the array
 
-        console.log(response.data);
-        // Ensure this matches your API's response structure:
+       
         setRoom(roomData); // Adjusted for direct assignment
       })
       .catch(error => {
