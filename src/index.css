@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #303d42;
+  background-color: #3f215f;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -69,4 +69,16 @@ button:focus-visible {
 
 .WebsiteName{
   text-align: center;
+}
+
+.visual{
+  size: 10px;
+}
+
+.chart-container {
+  width: 100%; /* Use 100% of the parent container width */
+  max-width: 1000px; /* Maximum width */
+  height: auto; /* Height is auto to maintain aspect ratio */
+  aspect-ratio: 16 / 9; /* Optional: Enforce a specific aspect ratio */
+  margin-left: -10%;
 }

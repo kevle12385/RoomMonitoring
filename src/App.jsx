@@ -49,9 +49,7 @@ function App() {
             <Link to="/rooms">Rooms</Link>     
           </li>
          
-          <li>
-            <Link to="/tempSimulation">Temp Simulator</Link>
-          </li>
+         
         </ul>
       </nav>
       
@@ -59,12 +57,11 @@ function App() {
       <Routes>
       <Route path="/rooms" element={ <Rooms URL={URL} rooms={rooms} setRooms={setRooms} />}>
       </Route>
-        <Route path="/tempSimulation" element={<TempSimulation/>} />
         <Route path="/" element={<Home />} /> 
         <Route path="/alerts" element={<Alerts URL={URL} rooms={rooms} setRooms={setRooms} alerts={alerts} setAlerts={setAlerts} />} />
         {/* <Route path="/rooms" element={ <Rooms URL={URL} rooms={rooms} setRooms={setRooms} />}>
           </Route> */}
-        <Route path="rooms/:name" element={<RoomTemplate />} />
+        <Route path="rooms/:id" element={<RoomTemplate URL={URL} />} />
         <Route path="*" element={<NotFound />} />
         
 

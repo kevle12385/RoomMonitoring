@@ -43,7 +43,7 @@ function Alerts({alerts, setAlerts, URL, rooms, setRooms }) {
     
     <div>
     {Array.isArray(alerts) && alerts.length > 0 ? alerts.map(alert => (
-  <h3 key={alert.room_id}>{alert.name} <br/> Upper limit:{alert.upperlimit} °F <br/>Lower limit: {alert.lowerLimit} °F</h3>
+  <h3 key={alert.room_id}>{alert.name} <br/> Upper limit:{alert.upperlimit} °C <br/>Lower limit: {alert.lowerLimit} °C</h3>
 )) : <p>No Alerts...</p>}
 
       </div>

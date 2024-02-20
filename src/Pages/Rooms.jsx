@@ -4,9 +4,19 @@ import axios from 'axios';
 import DeleteRoom from '../Modals/DeleteRoom.jsx';
 import EditScreen from '../Modals/EditScreen.jsx';
 
+import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from 'victory';
+
 
 function Rooms({ URL, rooms, setRooms }) {
   console.log("URL:", URL);
+
+  const data = [
+    {quarter: 1, earnings: 13000},
+    {quarter: 2, earnings: 16500},
+    {quarter: 3, earnings: 14250},
+    {quarter: 4, earnings: 19000}
+  ];
+
 
   const fetchRoomsData = () => {
     axios.get(`${URL}/api/room`)
@@ -29,16 +39,21 @@ function Rooms({ URL, rooms, setRooms }) {
     <>
   
       <h1>Rooms</h1>
-      
-      <div>
-        {Array.isArray(rooms) ? rooms.map(room => (
-          <div key={room.id}><a href={`/rooms/${room.name}`}>{room.name}</a></div>
-        )) : <p>No Rooms or data is not in expected format</p>}
-      </div>
-  
+
       <EditScreen fetchRoomsData={fetchRoomsData} URL={URL} rooms={rooms} setRooms={setRooms}/>
       <CreateRoom handleRoomCreated={fetchRoomsData} />
       <DeleteRoom fetchRoomsData={fetchRoomsData} URL={URL} rooms={rooms} setRooms={setRooms}/>
+  
+  
+
+
+      <div>
+        {Array.isArray(rooms) ? rooms.map(room => (
+          <h2 key={room.id}><a href={`/rooms/${room.id}`}>{room.name}</a></h2>
+        )) : <p>No Rooms or data is not in expected format</p>}
+      </div>
+  
+      
     </>
   );
   
