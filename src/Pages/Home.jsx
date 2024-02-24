@@ -11,7 +11,8 @@ function Home() {
     <h3>Note: The simulation graph does not update the real database 
     {<br/>}because it crashes it. Keep in mind when using this application, 
     {<br/>}creating, deleting, updating the rooms and alerts will actaully 
-    {<br/>}make changes to the database... </h3>
+    {<br/>}make changes to the database. If the buttons don't work, click on
+    {<br/>}this link </h3>
  
   
     </>
